@@ -33,7 +33,7 @@ namespace PantryGUI.ViewModels
 
         public void ItemNotFound()
         {
-            Console.WriteLine("sadf");
+            Console.WriteLine("sad");
         }
 
         public string Name
