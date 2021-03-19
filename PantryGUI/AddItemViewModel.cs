@@ -31,7 +31,45 @@ namespace PantryGUI.ViewModels
             Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
         }
 
+        public void ItemNotFound()
+        {
 
+        }
 
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetProperty(ref _name, value);
+            }
+        }
+
+        public int Quantity
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                SetProperty(ref _quantity, value);
+            }
+        }
+
+        public string Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                SetProperty(ref _category, value);
+            }
+        }
     }
 }
