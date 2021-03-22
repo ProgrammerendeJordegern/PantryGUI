@@ -13,5 +13,8 @@ namespace PantryGUI
     interface ICamera
     {
         event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
+        void CameraOn();
+
+        void CameraOff();
     }
 }
