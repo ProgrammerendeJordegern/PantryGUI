@@ -14,6 +14,10 @@ namespace PantryGUI.Models
 {
     public class CameraConnection : ICamera
     {
+
+        //opret et interfase til en lyd afspiller
+        //Klassen kunne indeholde en bool som beskiver om den skal være muted. 
+        //eller skal den afspille lyd når der kommer et event. 
         private FilterInfoCollection _filterInfoCollection;
         private VideoCaptureDevice _videoCaptureDevice;
         public List<string> CamerasList { get; private set; }
