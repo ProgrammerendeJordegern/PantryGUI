@@ -25,7 +25,7 @@ namespace PantryGUI.Models
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 
-        CameraConnection()
+        public CameraConnection()
         {
             CamerasList = new List<string>();
             _filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);

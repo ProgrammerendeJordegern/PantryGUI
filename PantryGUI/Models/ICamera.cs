@@ -10,7 +10,7 @@ namespace PantryGUI
     {
         public string Barcode { get; set; }
     }
-    interface ICamera
+   public interface ICamera
     {
         event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
         void CameraOn();

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using PantryGUI.Models;
 using Prism.Mvvm;
 using Prism.Commands;
 
@@ -17,6 +18,13 @@ namespace PantryGUI.ViewModels
         private int _quantity;
         private string _category;
         private ICommand _cancelCommand;
+        private ICommand 
+
+        public ICamera Camera;
+        public AddItemViewModel()
+        {
+            Camera = new CameraConnection();
+        }
 
         public ICommand CancelCommand
         {
