@@ -22,7 +22,7 @@ namespace PantryGUI.ViewModels
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
-        private SoundPlayer s;
+        private SoundPlayer soundPlayer;
 
         public AddItemViewModel()
         {
@@ -30,7 +30,7 @@ namespace PantryGUI.ViewModels
             Camera.CameraOn();
             _cameraButtonText = "Sluk kamera";
             Camera.BarcodeFoundEvent += found;
-            s = new SoundPlayer();
+            soundPlayer = new SoundPlayer();
         }
 
         public string Barcode
@@ -48,7 +48,7 @@ namespace PantryGUI.ViewModels
         private void found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
-            s.Play();
+            soundPlayer.Play();
         }
 
         public string CameraButtonText
