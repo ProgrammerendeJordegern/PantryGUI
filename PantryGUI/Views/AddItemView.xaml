@@ -5,25 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PantryGUI.Views"
         mc:Ignorable="d"
-        Title="Tilføj vare" Height="450" Width="800">
-    <Grid>
-       <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-           <ColumnDefinition/>
-       </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        Title="Tilføj vare" Height="450" Width="650">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0">Scan vare</TextBox>
+            <!--Column1-->
+            <Label>Tilføj vare</Label>
 
-        
+            <TextBox Grid.Row="1" Grid.Column="0">Scan vare</TextBox>
+
+            <Grid Grid.Row="2" Margin="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Margin="0,5">Navn:</Label>
+                <TextBlock Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="0,5">Antal:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+
+                <Label Grid.Row="2" Grid.Column="0" Margin="0,5">Holdbarhedsdato:</Label>
+                <TextBlock Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+
+                <Label Grid.Row="3" Grid.Column="0" Margin="0,5">Stregkode:</Label>
+                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+            </Grid>
+
+            <Button Grid.Row="3" HorizontalAlignment="Center">Tilføj vare</Button>
 
 
+            <!--Column2-->
+            <Grid Grid.Row="2" Grid.Column="1" Margin="5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
+                <ComboBox Grid.Row="0" ></ComboBox>
+                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5"></Image>
+                <Button Grid.Row="2" HorizontalAlignment="Center" Margin="0,5">Sluk kamera</Button>
+                <Label Grid.Row="3" Margin="0,5">Placer vare foran kamera</Label>
+            </Grid>
+        </Grid>
 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <Button Grid.Row="4" Content="_Ok" Width="35" Margin="10,0"></Button>
+            <Button Grid.Row="4" Grid.Column="1" Content="_Cancel" Width="45" Margin="10,0"></Button>
+        </StackPanel>
 
-
-    </Grid>
+    </StackPanel>
 </Window>
