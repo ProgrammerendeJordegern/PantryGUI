@@ -69,6 +69,8 @@ namespace PantryGUI.Models
             }
 
             CameraFeed = Convert(bitmap);
+            CameraFeed.Freeze();
+
         }
 
         private BitmapImage Convert(Bitmap src)

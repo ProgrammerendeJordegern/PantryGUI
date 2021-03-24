@@ -17,15 +17,38 @@ namespace PantryGUI.ViewModels
         private string _name;
         private int _quantity;
         private string _category;
+        private string _barcode;
         private ICommand _cancelCommand;
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
+        private SoundPlayer s;
+
         public AddItemViewModel()
         {
             Camera = new CameraConnection();
             Camera.CameraOn();
             _cameraButtonText = "Sluk kamera";
+            Camera.BarcodeFoundEvent += found;
+            s = new SoundPlayer();
+        }
+
+        public string Barcode
+        {
+            get
+            {
+                return _barcode;
+            }
+            set
+            {
+                SetProperty(ref _barcode, value);
+            }
+        }
+
+        private void found(object sender, BarcodeFoundEventArgs e)
+        {
+            Barcode = e.Barcode;
+            s.Play();
         }
 
         public string CameraButtonText

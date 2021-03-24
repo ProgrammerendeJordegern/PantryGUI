@@ -52,7 +52,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
 
                 <Label Grid.Row="3" Grid.Column="0" Margin="0,5">Stregkode:</Label>
-                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=Barcode}"></TextBlock>
             </Grid>
 
             <Button Grid.Row="3" HorizontalAlignment="Center">Tilføj vare</Button>
