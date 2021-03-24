@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PantryGUI.ViewModels;
 
 namespace PantryGUI.Views
 {
@@ -19,9 +20,21 @@ namespace PantryGUI.Views
     /// </summary>
     public partial class AddItemView : Window
     {
+        private AddItemViewModel addItemViewModel;
         public AddItemView()
         {
             InitializeComponent();
+            addItemViewModel = new AddItemViewModel();
         }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            addItemViewModel.Camera.CameraOff();
+        }
+
+        //private void Close(object sender, ContextMenuEventArgs e)
+        //{
+        //    addItemViewModel.Camera.CameraOff();
+        //}
     }
 }

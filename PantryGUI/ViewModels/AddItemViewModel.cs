@@ -73,16 +73,18 @@ namespace PantryGUI.ViewModels
 
         private void TurnOffCamHandler()
         {
-            if (CameraButtonText == "Sluk kamera")
-            {
-                CameraButtonText = "Sluk kamera";
-                Camera.CameraOff();
-            }
-            else
-            {
-                CameraButtonText = "Tænd kamera";
-                Camera.CameraOn();
-            }
+            //if (CameraButtonText == "Sluk kamera")
+            //{
+            //    CameraButtonText = "Sluk kamera";
+            //    Camera.CameraOff();
+            //}
+            //else
+            //{
+            //    CameraButtonText = "Tænd kamera";
+            //    Camera.CameraOn();
+            //}
+
+            Camera.CameraOff();
         }
 
         public ICommand CancelCommand
