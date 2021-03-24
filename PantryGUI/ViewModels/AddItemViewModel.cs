@@ -18,12 +18,47 @@ namespace PantryGUI.ViewModels
         private int _quantity;
         private string _category;
         private ICommand _cancelCommand;
-        private ICommand 
-
-        public ICamera Camera;
+        private ICommand _turnOffCamera;
+        public CameraConnection Camera { get; private set; }
+        private string _cameraButtonText;
         public AddItemViewModel()
         {
             Camera = new CameraConnection();
+            Camera.CameraOn();
+            _cameraButtonText = "Sluk kamera";
+        }
+
+        public string CameraButtonText
+        {
+            get
+            {
+                return _cameraButtonText;
+            }
+            set
+            {
+                SetProperty(ref _cameraButtonText, value);
+            }
+        }
+
+        public ICommand TurnOffCamera
+        {
+            get
+            {
+                return _turnOffCamera ?? (_turnOffCamera = new DelegateCommand(TurnOffCamHandler));
+            }
+        }
+
+        private void TurnOffCamHandler()
+        {
+            if (CameraButtonText == "Sluk kamera")
+            {
+                Camera.CameraOff();
+            }
+            else
+            {
+                CameraButtonText = "Tænd kamera";
+                Camera.CameraOn();
+            }
         }
 
         public ICommand CancelCommand

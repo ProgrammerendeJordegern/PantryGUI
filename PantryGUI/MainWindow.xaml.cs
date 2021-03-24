@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PantryGUI.Views;
 
 namespace PantryGUI
 {
@@ -23,6 +24,10 @@ namespace PantryGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            AddItemView addItemView = new AddItemView();
+            //AgentsDialogbox.Owner = App.Current.MainWindow;
+            addItemView.ShowDialog();
         }
     }
 }

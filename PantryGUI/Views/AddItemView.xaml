@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PantryGUI.Views"
+        xmlns:viewModels="clr-namespace:PantryGUI.ViewModels"
         mc:Ignorable="d"
         Title="Tilføj vare" Height="450" Width="650">
+    <Window.DataContext>
+        <viewModels:AddItemViewModel>
+        </viewModels:AddItemViewModel>
+    </Window.DataContext>
     <StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -65,9 +70,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="0" ></ComboBox>
-                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5"></Image>
-                <Button Grid.Row="2" HorizontalAlignment="Center" Margin="0,5">Sluk kamera</Button>
+                <ComboBox Grid.Row="0" ItemsSource="{Binding Path=Camera.CamerasList}" ></ComboBox>
+                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5" Source="{Binding Path=Camera.CameraFeed}"></Image>
+                <Button Grid.Row="2" HorizontalAlignment="Center" Margin="0,5" Content="{Binding Path=CameraButtonText}" Command="{Binding Path=TurnOffCamera}"></Button>
                 <Label Grid.Row="3" Margin="0,5">Placer vare foran kamera</Label>
             </Grid>
         </Grid>
