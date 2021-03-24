@@ -9,10 +9,11 @@ using AForge.Video.DirectShow;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
+using Prism.Mvvm;
 
 namespace PantryGUI.Models
 {
-    public class CameraConnection : ICamera
+    public class CameraConnection : BindableBase, ICamera
     {
 
         //opret et interfase til en lyd afspiller
@@ -21,7 +22,19 @@ namespace PantryGUI.Models
         private FilterInfoCollection _filterInfoCollection;
         private VideoCaptureDevice _videoCaptureDevice;
         public List<string> CamerasList { get; private set; }
-        public BitmapImage CameraFeed { get; private set; }
+        private BitmapImage _cameraFeed;
+
+        public BitmapImage CameraFeed
+        {
+            get
+            {
+                return _cameraFeed;
+            }
+            set
+            {
+                SetProperty(ref _cameraFeed, value);
+            }
+        }
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 

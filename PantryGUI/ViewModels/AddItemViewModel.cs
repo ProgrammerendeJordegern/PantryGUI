@@ -52,6 +52,7 @@ namespace PantryGUI.ViewModels
         {
             if (CameraButtonText == "Sluk kamera")
             {
+                CameraButtonText = "Sluk kamera";
                 Camera.CameraOff();
             }
             else
