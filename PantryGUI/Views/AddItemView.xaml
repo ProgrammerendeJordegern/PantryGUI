@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="Tilføj vare" Height="450" Width="800">
     <Grid>
-       
+       <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+           <ColumnDefinition/>
+       </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="0" Grid.Column="0">Scan vare</TextBox>
+
+        
+
+
+
+
+
+
     </Grid>
 </Window>
