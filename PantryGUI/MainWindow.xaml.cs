@@ -24,12 +24,9 @@ namespace PantryGUI
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Load(object sender, RoutedEventArgs e)
-        {
             AddItemView addItemView = new AddItemView();
-            addItemView.Owner = App.Current.MainWindow;
+            //AgentsDialogbox.Owner = App.Current.MainWindow;
             addItemView.ShowDialog();
         }
     }

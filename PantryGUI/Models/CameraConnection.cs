@@ -66,8 +66,7 @@ namespace PantryGUI.Models
                 BarcodeFound(new BarcodeFoundEventArgs { Barcode = result.ToString() });
             }
 
-            _cameraFeed = Convert(bitmap);
-            _cameraFeed.Freeze();
+            CameraFeed = Convert(bitmap);
         }
 
         private BitmapImage Convert(Bitmap src)
