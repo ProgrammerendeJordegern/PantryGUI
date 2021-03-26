@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using PantryGUI.Models;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -20,17 +21,45 @@ namespace PantryGUI.ViewModels
         private string _barcode;
         private ICommand _cancelCommand;
         private ICommand _turnOffCamera;
-        public CameraConnection Camera { get; private set; }
+        private CameraConnection _camera;
+        private List<string> _cameraList;
         private string _cameraButtonText;
         private SoundPlayer _soundPlayer;
+        private BitmapImage _cameraFeed;
 
         public AddItemViewModel()
         {
-            Camera = new CameraConnection();
-            Camera.CameraOn();
+            _camera = new CameraConnection();
+            _camera.CameraOn();
             _cameraButtonText = "Sluk kamera";
-            Camera.BarcodeFoundEvent += found;
+            _camera.BarcodeFoundEvent += Found;
             _soundPlayer = new SoundPlayer();
+            _cameraList = new List<string>();
+        }
+
+        public List<string> CameraList
+        {
+            get
+            {
+                return _camera.GetCameraList();
+            }
+
+            set
+            {
+                SetProperty(ref _cameraList, value);
+            }
+        }
+
+        public BitmapImage CameraFeed
+        {
+            get
+            {
+                return _camera.GetCameraFeed();
+            }
+            set
+            {
+                SetProperty(ref _cameraFeed, value);
+            }
         }
 
         public string Barcode
@@ -45,7 +74,7 @@ namespace PantryGUI.ViewModels
             }
         }
 
-        private void found(object sender, BarcodeFoundEventArgs e)
+        private void Found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
             _soundPlayer.Play();
@@ -76,15 +105,15 @@ namespace PantryGUI.ViewModels
             //if (CameraButtonText == "Sluk kamera")
             //{
             //    CameraButtonText = "Sluk kamera";
-            //    Camera.CameraOff();
+            //    _camera.CameraOff();
             //}
             //else
             //{
             //    CameraButtonText = "Tænd kamera";
-            //    Camera.CameraOn();
+            //    _camera.CameraOn();
             //}
 
-            Camera.CameraOff();
+            _camera.CameraOff();
         }
 
         public ICommand CancelCommand

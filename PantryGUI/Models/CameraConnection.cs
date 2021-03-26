@@ -13,7 +13,7 @@ using Prism.Mvvm;
 
 namespace PantryGUI.Models
 {
-    public class CameraConnection : BindableBase, ICamera
+    public class CameraConnection : ICamera
     {
 
         //opret et interfase til en lyd afspiller
@@ -21,32 +21,30 @@ namespace PantryGUI.Models
         //eller skal den afspille lyd når der kommer et event. 
         private FilterInfoCollection _filterInfoCollection;
         private VideoCaptureDevice _videoCaptureDevice;
-        public List<string> CamerasList { get; private set; }
+        private List<string> _camerasList;
         private BitmapImage _cameraFeed;
-
-        public BitmapImage CameraFeed
-        {
-            get
-            {
-                return _cameraFeed;
-            }
-            set
-            {
-                SetProperty(ref _cameraFeed, value);
-            }
-        }
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 
         public CameraConnection()
         {
-            CamerasList = new List<string>();
+            _camerasList = new List<string>();
             _filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
             foreach (FilterInfo device in _filterInfoCollection)
             {
-                CamerasList.Add(device.Name);
+                _camerasList.Add(device.Name);
             }
+        }
+
+        public BitmapImage GetCameraFeed()
+        {
+            return _cameraFeed;
+        }
+
+        public List<string> GetCameraList()
+        {
+            return _camerasList;
         }
 
         public void CameraOn()
@@ -68,8 +66,8 @@ namespace PantryGUI.Models
                 BarcodeFound(new BarcodeFoundEventArgs { Barcode = result.ToString() });
             }
 
-            CameraFeed = Convert(bitmap);
-            CameraFeed.Freeze();
+            _cameraFeed = Convert(bitmap);
+            _cameraFeed.Freeze();
 
         }
 
