@@ -77,7 +77,7 @@ namespace PantryGUI.ViewModels
         private void Found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
-            _soundPlayer.Play();
+            soundPlayer.Play();
         }
 
         public string CameraButtonText
