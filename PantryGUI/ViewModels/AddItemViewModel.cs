@@ -22,7 +22,7 @@ namespace PantryGUI.ViewModels
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
-        private SoundPlayer _soundPlayer;
+        private SoundPlayer soundPlayer;
 
         public AddItemViewModel()
         {
@@ -30,7 +30,7 @@ namespace PantryGUI.ViewModels
             Camera.CameraOn();
             _cameraButtonText = "Sluk kamera";
             Camera.BarcodeFoundEvent += found;
-            _soundPlayer = new SoundPlayer();
+            soundPlayer = new SoundPlayer();
         }
 
         public string Barcode
@@ -48,7 +48,7 @@ namespace PantryGUI.ViewModels
         private void found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
-            _soundPlayer.Play();
+            soundPlayer.Play();
         }
 
         public string CameraButtonText
@@ -73,18 +73,16 @@ namespace PantryGUI.ViewModels
 
         private void TurnOffCamHandler()
         {
-            //if (CameraButtonText == "Sluk kamera")
-            //{
-            //    CameraButtonText = "Sluk kamera";
-            //    Camera.CameraOff();
-            //}
-            //else
-            //{
-            //    CameraButtonText = "Tænd kamera";
-            //    Camera.CameraOn();
-            //}
-
-            Camera.CameraOff();
+            if (CameraButtonText == "Sluk kamera")
+            {
+                CameraButtonText = "Sluk kamera";
+                Camera.CameraOff();
+            }
+            else
+            {
+                CameraButtonText = "Tænd kamera";
+                Camera.CameraOn();
+            }
         }
 
         public ICommand CancelCommand
