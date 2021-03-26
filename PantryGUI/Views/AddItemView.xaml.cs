@@ -20,21 +20,21 @@ namespace PantryGUI.Views
     /// </summary>
     public partial class AddItemView : Window
     {
-        private AddItemViewModel addItemViewModel;
+        private AddItemViewModel _addItemViewModel;
         public AddItemView()
         {
             InitializeComponent();
-            addItemViewModel = new AddItemViewModel();
+            _addItemViewModel = new AddItemViewModel();
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-            addItemViewModel.Camera.CameraOff();
+            
         }
 
         //private void Close(object sender, ContextMenuEventArgs e)
         //{
-        //    addItemViewModel.Camera.CameraOff();
+        //    _addItemViewModel.Camera.CameraOff();
         //}
     }
 }

@@ -70,8 +70,8 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="0" ItemsSource="{Binding Path=Camera.CamerasList}" ></ComboBox>
-                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5" Source="{Binding Path=Camera.CameraFeed}"></Image>
+                <ComboBox Grid.Row="0" ItemsSource="{Binding Path=CameraList}" ></ComboBox>
+                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5" Source="{Binding Path=CameraFeed}"></Image>
                 <Button Grid.Row="2" HorizontalAlignment="Center" Margin="0,5" Content="{Binding Path=CameraButtonText}" Command="{Binding Path=TurnOffCamera}"></Button>
                 <Label Grid.Row="3" Margin="0,5">Placer vare foran kamera</Label>
             </Grid>

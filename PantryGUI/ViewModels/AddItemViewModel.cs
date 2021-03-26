@@ -35,6 +35,7 @@ namespace PantryGUI.ViewModels
             _camera.BarcodeFoundEvent += Found;
             _soundPlayer = new SoundPlayer();
             _cameraList = new List<string>();
+            _cameraFeed = _camera.GetCameraFeed();
         }
 
         public List<string> CameraList
@@ -77,7 +78,7 @@ namespace PantryGUI.ViewModels
         private void Found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
-            soundPlayer.Play();
+            _soundPlayer.Play();
         }
 
         public string CameraButtonText
