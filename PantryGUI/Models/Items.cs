@@ -14,7 +14,12 @@ namespace PantryGUI.Models
     {
         private string _name;
         private int _quantity;
-        private DateTime _date;
+        private string _date;
+
+        public Items()
+        {
+            _date = DateTime.Now.ToLongDateString();
+        }
 
         public string Name
         {
@@ -60,11 +65,11 @@ namespace PantryGUI.Models
             }
         }
 
-        public DateTime Date
+        public string Date
         {
             get
             {
-                return _date.Date;
+                return _date;
             }
             set
             {
