@@ -1,9 +1,9 @@
 ﻿namespace PantryGUI.Models
 {
-    interface ITimer
+    interface ITimer<T>
     {
         void Enable();
         void Disable();
-        System.Timers.Timer GetTimer();
+        T GetTimer();
     }
 }

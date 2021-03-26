@@ -25,7 +25,7 @@ namespace PantryGUI.ViewModels
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
-        private SoundPlayer _soundPlayer;
+        private ISoundPlayer _soundPlayer;
         private int _cameraListIndex;
         private Items _item;
 
@@ -113,18 +113,19 @@ namespace PantryGUI.ViewModels
 
         private void TurnOffCamHandler()
         {
-            if (_stateForCamera == CameraState.CameraOn)
+            switch (_stateForCamera)
             {
-                _stateForCamera = CameraState.CameraOff;
-                CameraButtonText = "Tænd kamera";
-                Camera.CameraOff();
-                Camera.CameraFeed = null;
-            }
-            else
-            {
-                _stateForCamera = CameraState.CameraOn;
-                CameraButtonText = "Sluk kamera";
-                Camera.CameraOn();
+                case CameraState.CameraOn:
+                    _stateForCamera = CameraState.CameraOff;
+                    CameraButtonText = "Tænd kamera";
+                    Camera.CameraOff();
+                    Camera.CameraFeed = null;
+                    break;
+                case CameraState.CameraOff:
+                    _stateForCamera = CameraState.CameraOn;
+                    CameraButtonText = "Sluk kamera";
+                    Camera.CameraOn();
+                    break;
             }
         }
 

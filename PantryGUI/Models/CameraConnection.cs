@@ -17,7 +17,7 @@ namespace PantryGUI.Models
         private int _cameraListIndex;
         private BitmapImage _cameraFeed;
         private ReadBarcode _reader;
-        private ITimer _timer;
+        private ITimer<Timer> _timer;
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 
