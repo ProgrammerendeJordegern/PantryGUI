@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Items.cs" />
     <Compile Include="Models\ITimer.cs" />
     <Compile Include="Models\ReadBarcode.cs" />
     <Compile Include="Models\IBarcodeReader.cs" />
