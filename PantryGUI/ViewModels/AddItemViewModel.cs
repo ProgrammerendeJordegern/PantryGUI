@@ -25,6 +25,9 @@ namespace PantryGUI.ViewModels
         private string _cameraButtonText;
         private SoundPlayer _soundPlayer;
         private int _cameraListIndex;
+
+        public enum CameraState { CameraOn, CameraOff }
+        private CameraState _stateForCamera;
         
         public ObservableCollection<string> CameraList { get; private set; }
 
@@ -35,7 +38,7 @@ namespace PantryGUI.ViewModels
             _cameraButtonText = "Sluk kamera";
             Camera.BarcodeFoundEvent += found;
             _soundPlayer = new SoundPlayer();
-
+            _stateForCamera = CameraState.CameraOn;
             CameraList = new ObservableCollection<string>();
             CameraList = Camera.CamerasList;
         }
@@ -93,14 +96,16 @@ namespace PantryGUI.ViewModels
 
         private void TurnOffCamHandler()
         {
-            if (CameraButtonText == "Sluk kamera")
+            if (_stateForCamera == CameraState.CameraOn)
             {
+                _stateForCamera = CameraState.CameraOff;
                 CameraButtonText = "Tænd kamera";
                 Camera.CameraOff();
                 Camera.CameraFeed = null;
             }
             else
             {
+                _stateForCamera = CameraState.CameraOn;
                 CameraButtonText = "Sluk kamera";
                 Camera.CameraOn();
             }

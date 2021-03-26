@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Threading;
-using ZXing;
 using AForge.Video.DirectShow;
 using System.Drawing;
 using System.IO;
+using System.Timers;
 using System.Windows.Media.Imaging;
 using Prism.Mvvm;
 
@@ -25,12 +20,17 @@ namespace PantryGUI.Models
         public ObservableCollection<string> CamerasList { get; private set; }
         private int _cameraListIndex;
         private BitmapImage _cameraFeed;
+        private ReadBarcode _reader;
+        private TimerClock _timer;
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 
         public CameraConnection()
         {
             _cameraListIndex = 0;
+            _reader = new ReadBarcode();
+            _timer = new TimerClock(2000);
+            _timer.GetTimer().Elapsed += new ElapsedEventHandler(TimeHandler);
             CamerasList = new ObservableCollection<string>();
             _filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
 
@@ -68,17 +68,23 @@ namespace PantryGUI.Models
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
             Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            BarcodeReader reader = new BarcodeReader();
-            var result = reader.Decode(bitmap);
 
-            if (result != null)
+            string barcode = _reader.GetBarcode(bitmap);
+
+            if (barcode != null)
             {
-                BarcodeFound(new BarcodeFoundEventArgs { Barcode = result.ToString() });
+                BarcodeFound(new BarcodeFoundEventArgs { Barcode = barcode });
+                _reader.Deactivate();
+                _timer.Enable();
             }
 
             CameraFeed = Convert(bitmap);
             CameraFeed.Freeze();
+        }
 
+        private void TimeHandler(object source, ElapsedEventArgs e)
+        {
+            _reader.Activate();
         }
 
         private BitmapImage Convert(Bitmap src)

@@ -81,9 +81,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\ITimer.cs" />
+    <Compile Include="Models\ReadBarcode.cs" />
+    <Compile Include="Models\IBarcodeReader.cs" />
     <Compile Include="Models\ICamera.cs" />
     <Compile Include="Models\ISoundPlayer.cs" />
     <Compile Include="Models\SoundPlayer.cs" />
+    <Compile Include="Models\TimerClock.cs" />
     <Compile Include="ViewModels\AddItemViewModel.cs" />
     <Compile Include="Models\BackendConnection.cs" />
     <Compile Include="Models\CameraConnection.cs" />
