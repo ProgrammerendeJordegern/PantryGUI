@@ -26,7 +26,7 @@ namespace PantryGUI.ViewModels
         private SoundPlayer _soundPlayer;
         private int _cameraListIndex;
         
-        public ObservableCollection<string> CameraList { get; }
+        public ObservableCollection<string> CameraList { get; private set; }
 
         public AddItemViewModel()
         {
@@ -37,6 +37,7 @@ namespace PantryGUI.ViewModels
             _soundPlayer = new SoundPlayer();
 
             CameraList = new ObservableCollection<string>();
+            CameraList = Camera.CamerasList;
         }
 
         public int CameraListIndex
@@ -47,6 +48,7 @@ namespace PantryGUI.ViewModels
             }
             set
             {
+                Camera.SetCameraListIndex(value);
                 SetProperty(ref _cameraListIndex, value);
             }
         }

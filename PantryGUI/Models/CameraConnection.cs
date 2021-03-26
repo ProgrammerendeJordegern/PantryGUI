@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,23 @@ namespace PantryGUI.Models
         //eller skal den afspille lyd når der kommer et event. 
         private FilterInfoCollection _filterInfoCollection;
         private VideoCaptureDevice _videoCaptureDevice;
-        public List<string> CamerasList { get; private set; }
+        public ObservableCollection<string> CamerasList { get; private set; }
+        private int _cameraListIndex;
         private BitmapImage _cameraFeed;
+
+        public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
+
+        public CameraConnection()
+        {
+            _cameraListIndex = 0;
+            CamerasList = new ObservableCollection<string>();
+            _filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            foreach (FilterInfo device in _filterInfoCollection)
+            {
+                CamerasList.Add(device.Name);
+            }
+        }
 
         public BitmapImage CameraFeed
         {
@@ -36,26 +52,18 @@ namespace PantryGUI.Models
             }
         }
 
-        public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
-
-        public CameraConnection()
-        {
-            CamerasList = new List<string>();
-            _filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
-            foreach (FilterInfo device in _filterInfoCollection)
-            {
-                CamerasList.Add(device.Name);
-            }
-        }
-
         public void CameraOn()
         {
-            _videoCaptureDevice = new VideoCaptureDevice(_filterInfoCollection[0].MonikerString);
+            _videoCaptureDevice = new VideoCaptureDevice(_filterInfoCollection[_cameraListIndex].MonikerString);
             _videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             _videoCaptureDevice.Start();
         }
 
+
+        public void SetCameraListIndex(int index)
+        {
+            _cameraListIndex = index;
+        }
 
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
