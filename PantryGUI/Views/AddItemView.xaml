@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:PantryGUI.Views"
         xmlns:viewModels="clr-namespace:PantryGUI.ViewModels"
         mc:Ignorable="d"
-        Title="Tilføj vare" Height="450" Width="650" Unloaded="CloseWindow">
+        Title="Tilføj vare" Height="450" Width="650">
     <Window.DataContext>
         <viewModels:AddItemViewModel>
         </viewModels:AddItemViewModel>
     </Window.DataContext>
     <StackPanel>
-        <Grid >
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
