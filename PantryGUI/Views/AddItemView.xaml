@@ -28,7 +28,7 @@
             <!--Column1-->
             <Label>Tilføj vare</Label>
 
-            <TextBox Grid.Row="1" Grid.Column="0">Scan vare</TextBox>
+            <Label Grid.Row="1" Grid.Column="0">Scan vare</Label>
 
             <Grid Grid.Row="2" Margin="5,0">
                 <Grid.ColumnDefinitions>
