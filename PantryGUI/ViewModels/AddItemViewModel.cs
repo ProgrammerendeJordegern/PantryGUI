@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -22,7 +23,10 @@ namespace PantryGUI.ViewModels
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
-        private SoundPlayer s;
+        private SoundPlayer _soundPlayer;
+        private int _cameraListIndex;
+        
+        public ObservableCollection<string> CameraList { get; }
 
         public AddItemViewModel()
         {
@@ -30,7 +34,21 @@ namespace PantryGUI.ViewModels
             Camera.CameraOn();
             _cameraButtonText = "Sluk kamera";
             Camera.BarcodeFoundEvent += found;
-            s = new SoundPlayer();
+            _soundPlayer = new SoundPlayer();
+
+            CameraList = new ObservableCollection<string>();
+        }
+
+        public int CameraListIndex
+        {
+            get
+            {
+                return _cameraListIndex;
+            }
+            set
+            {
+                SetProperty(ref _cameraListIndex, value);
+            }
         }
 
         public string Barcode
@@ -48,7 +66,7 @@ namespace PantryGUI.ViewModels
         private void found(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
-            s.Play();
+            _soundPlayer.Play();
         }
 
         public string CameraButtonText
