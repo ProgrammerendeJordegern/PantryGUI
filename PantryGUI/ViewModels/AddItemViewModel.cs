@@ -19,7 +19,9 @@ namespace PantryGUI.ViewModels
         private int _quantity;
         private string _category;
         private string _barcode;
+        private BackendConnection _backendConnection;
         private ICommand _cancelCommand;
+        private ICommand _okCommand;
         private ICommand _turnOffCamera;
         public CameraConnection Camera { get; private set; }
         private string _cameraButtonText;
@@ -41,6 +43,7 @@ namespace PantryGUI.ViewModels
             _stateForCamera = CameraState.CameraOn;
             CameraList = new ObservableCollection<string>();
             CameraList = Camera.CamerasList;
+            _backendConnection = new BackendConnection();
         }
 
         public int CameraListIndex
@@ -111,6 +114,21 @@ namespace PantryGUI.ViewModels
             }
         }
 
+        public ICommand OkCommand
+        {
+            get
+            {
+                return _okCommand ?? (_okCommand = new DelegateCommand(OkHandler));
+            }
+        }
+
+        private void OkHandler()
+        {
+            _backendConnection.SetNewItem("Test", "Test", "Test");
+            Camera.CameraOff();
+            Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
+        }
+
         public ICommand CancelCommand
         {
             get
@@ -121,6 +139,7 @@ namespace PantryGUI.ViewModels
 
         private void CancelHandler()
         {
+            Camera.CameraOff();
             Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
         }
 

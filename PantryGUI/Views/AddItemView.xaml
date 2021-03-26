@@ -57,7 +57,6 @@
 
             <Button Grid.Row="3" HorizontalAlignment="Center">Tilføj vare</Button>
 
-
             <!--Column2-->
             <Grid Grid.Row="2" Grid.Column="1" Margin="5,0">
                 <Grid.ColumnDefinitions>
@@ -78,8 +77,8 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button Grid.Row="4" Content="_Ok" Width="35" Margin="10,0"></Button>
-            <Button Grid.Row="4" Grid.Column="1" Content="_Cancel" Width="45" Margin="10,0"></Button>
+            <Button Grid.Row="4" Content="_Ok" Width="35" Margin="10,0" Command="{Binding Path=OkCommand}"></Button>
+            <Button Grid.Row="4" Grid.Column="1" Content="_Cancel" Width="45" Margin="10,0" Command="{Binding Path=CancelCommand}"></Button>
         </StackPanel>
 
     </StackPanel>
