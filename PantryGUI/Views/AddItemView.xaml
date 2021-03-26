@@ -28,7 +28,7 @@
             <!--Column1-->
             <Label>Tilføj vare</Label>
 
-            <Label Grid.Row="1" Grid.Column="0">Scan vare</Label>
+            <TextBox Grid.Row="1" Grid.Column="0">Scan vare</TextBox>
 
             <Grid Grid.Row="2" Margin="5,0">
                 <Grid.ColumnDefinitions>
@@ -52,7 +52,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
 
                 <Label Grid.Row="3" Grid.Column="0" Margin="0,5">Stregkode:</Label>
-                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=Barcode}"></TextBlock>
             </Grid>
 
             <Button Grid.Row="3" HorizontalAlignment="Center">Tilføj vare</Button>
@@ -70,8 +70,8 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="0" ItemsSource="{Binding Path=CameraList}" ></ComboBox>
-                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5" Source="{Binding Path=CameraFeed}"></Image>
+                <ComboBox Grid.Row="0" ItemsSource="{Binding Path=Camera.CamerasList}" ></ComboBox>
+                <Image Grid.Row="1" MinHeight="150" MinWidth="300" Margin="0,5" Source="{Binding Path=Camera.CameraFeed}"></Image>
                 <Button Grid.Row="2" HorizontalAlignment="Center" Margin="0,5" Content="{Binding Path=CameraButtonText}" Command="{Binding Path=TurnOffCamera}"></Button>
                 <Label Grid.Row="3" Margin="0,5">Placer vare foran kamera</Label>
             </Grid>
