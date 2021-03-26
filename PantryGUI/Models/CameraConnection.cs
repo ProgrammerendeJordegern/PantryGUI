@@ -11,10 +11,6 @@ namespace PantryGUI.Models
 {
     public class CameraConnection : BindableBase, ICamera
     {
-
-        //opret et interfase til en lyd afspiller
-        //Klassen kunne indeholde en bool som beskiver om den skal være muted. 
-        //eller skal den afspille lyd når der kommer et event. 
         private FilterInfoCollection _filterInfoCollection;
         private VideoCaptureDevice _videoCaptureDevice;
         public ObservableCollection<string> CamerasList { get; private set; }
@@ -99,16 +95,6 @@ namespace PantryGUI.Models
             return image;
         }
 
-
-        //Lav et interfase til den 
-        //tilføj et event i interfaset:
-        //event BarcodeFound ......
-
-        //lav en eventargs klasse som indeholder en string
-        //handleren kan så implenteres i view modellen
-
-        //Den skal have on /off funktion
-
         public void CameraOff()
         {
             if (_videoCaptureDevice != null)
@@ -124,12 +110,5 @@ namespace PantryGUI.Models
         {
             BarcodeFoundEvent?.Invoke(this, e);
         }
-
-        public string GetBarcode()
-        {
-            return "barcode";
-        }
-
-
     }
 }
