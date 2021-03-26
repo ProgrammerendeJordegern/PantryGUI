@@ -27,10 +27,11 @@ namespace PantryGUI.ViewModels
         private string _cameraButtonText;
         private SoundPlayer _soundPlayer;
         private int _cameraListIndex;
+        private Items _item;
 
         public enum CameraState { CameraOn, CameraOff }
         private CameraState _stateForCamera;
-        
+
         public ObservableCollection<string> CameraList { get; private set; }
 
         public AddItemViewModel()
@@ -44,6 +45,19 @@ namespace PantryGUI.ViewModels
             CameraList = new ObservableCollection<string>();
             CameraList = Camera.CamerasList;
             _backendConnection = new BackendConnection();
+            _item = new Items();
+        }
+
+        public Items item
+        {
+            get
+            {
+                return _item;
+            }
+            set
+            {
+                SetProperty(ref _item, value);
+            }
         }
 
         public int CameraListIndex

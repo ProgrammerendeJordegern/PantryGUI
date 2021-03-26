@@ -28,27 +28,9 @@ namespace PantryGUI.Models
                 {
                     List<string> errors = new List<string>
                     {
-                        "Name is mandatory."
+                        "Navn skal udfyldes."
                     };
                     SetErrors("Name", errors);
-                }
-                else
-                {
-                    var isValid = true;
-                    foreach (var c in value)
-                        if (!char.IsLetter(c))
-                        {
-                            List<string> errors = new List<string>
-                            {
-                                "Name can only contain letters!"
-                            };
-                            SetErrors("Name", errors);
-                            isValid = false;
-                            break;
-                        }
-
-                    if (isValid)
-                        ClearErrors("Name");
                 }
                 SetProperty(ref _name, value);
             }
@@ -66,13 +48,13 @@ namespace PantryGUI.Models
                 {
                     List<string> errors = new List<string>
                     {
-                        "Age cannot be negative."
+                        "Antal kan ikke være negativ."
                     };
-                    SetErrors("Age", errors);
+                    SetErrors("Quantity", errors);
                 }
                 else
                 {
-                    ClearErrors("Age");
+                    ClearErrors("Quantity");
                 }
                 SetProperty(ref _quantity, value);
             }
@@ -82,7 +64,7 @@ namespace PantryGUI.Models
         {
             get
             {
-                return _date;
+                return _date.Date;
             }
             set
             {

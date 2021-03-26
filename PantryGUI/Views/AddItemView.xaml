@@ -43,16 +43,16 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Margin="0,5">Navn:</Label>
-                <TextBlock Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+                <TextBox Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=item.Name}"></TextBox>
 
                 <Label Grid.Row="1" Grid.Column="0" Margin="0,5">Antal:</Label>
-                <TextBlock Grid.Row="1" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=item.Quantity}"></TextBox>
 
                 <Label Grid.Row="2" Grid.Column="0" Margin="0,5">Holdbarhedsdato:</Label>
-                <TextBlock Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="0,5"></TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=item.Date}"></TextBox>
 
                 <Label Grid.Row="3" Grid.Column="0" Margin="0,5">Stregkode:</Label>
-                <TextBlock Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5" Text="{Binding Path=Barcode}"></TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="1" MinWidth="200" Margin="0,5" IsReadOnly="True" Text="{Binding Path=Barcode}"></TextBox>
             </Grid>
 
             <Button Grid.Row="3" HorizontalAlignment="Center">Tilføj vare</Button>
