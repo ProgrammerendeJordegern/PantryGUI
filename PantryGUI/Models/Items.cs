@@ -37,6 +37,10 @@ namespace PantryGUI.Models
                     };
                     SetErrors("Name", errors);
                 }
+                else
+                {
+                    ClearErrors("Name");
+                }
                 SetProperty(ref _name, value);
             }
         }
@@ -79,6 +83,7 @@ namespace PantryGUI.Models
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         #region INotifyDataErrorInfo implementation
         public bool HasErrors
         {

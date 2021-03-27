@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using PantryGUI.Models;
 using Prism.Mvvm;
 using Prism.Commands;
@@ -38,8 +39,8 @@ namespace PantryGUI.ViewModels
         {
             Camera = new CameraConnection();
             Camera.CameraOn();
+            Camera.BarcodeFoundEvent += FoundBarcode;
             _cameraButtonText = "Sluk kamera";
-            Camera.BarcodeFoundEvent += found;
             _soundPlayer = new SoundPlayer();
             _stateForCamera = CameraState.CameraOn;
             CameraList = new ObservableCollection<string>();
@@ -85,7 +86,7 @@ namespace PantryGUI.ViewModels
             }
         }
 
-        private void found(object sender, BarcodeFoundEventArgs e)
+        private void FoundBarcode(object sender, BarcodeFoundEventArgs e)
         {
             Barcode = e.Barcode;
             _soundPlayer.Play();
@@ -119,7 +120,8 @@ namespace PantryGUI.ViewModels
                     _stateForCamera = CameraState.CameraOff;
                     CameraButtonText = "Tænd kamera";
                     Camera.CameraOff();
-                    Camera.CameraFeed = null;
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() => { Camera.CameraFeed = null; }));
+                   
                     break;
                 case CameraState.CameraOff:
                     _stateForCamera = CameraState.CameraOn;
@@ -133,7 +135,7 @@ namespace PantryGUI.ViewModels
         {
             get
             {
-                return _okCommand ?? (_okCommand = new DelegateCommand(OkHandler));
+                return _okCommand ?? (_okCommand = new DelegateCommand(OkHandler, OkCommandCanExecute).ObservesProperty(() => item.Quantity).ObservesProperty(() => item.Name));
             }
         }
 
@@ -142,6 +144,18 @@ namespace PantryGUI.ViewModels
             _backendConnection.SetNewItem("Test", "Test", "Test");
             Camera.CameraOff();
             Application.Current.Windows[Application.Current.Windows.Count - 2].Close();
+        }
+
+        private bool OkCommandCanExecute()
+        {
+            if (item.Quantity >= 1 && String.IsNullOrEmpty(item.Name) == false)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public ICommand CancelCommand

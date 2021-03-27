@@ -4,7 +4,9 @@ using AForge.Video.DirectShow;
 using System.Drawing;
 using System.IO;
 using System.Timers;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using Prism.Mvvm;
 
 namespace PantryGUI.Models
@@ -74,8 +76,9 @@ namespace PantryGUI.Models
                 _timer.Enable();
             }
 
-            CameraFeed = Convert(bitmap);
-            CameraFeed.Freeze();
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => { CameraFeed = Convert(bitmap); }));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => { CameraFeed.Freeze(); }));
+            
         }
 
         private void TimeHandler(object source, ElapsedEventArgs e)

@@ -26,8 +26,10 @@ namespace PantryGUI
             InitializeComponent();
 
             AddItemView addItemView = new AddItemView();
-            //AgentsDialogbox.Owner = App.Current.MainWindow;
+            //addItemView.Owner = App.Current.MainWindow;
+
             addItemView.ShowDialog();
+
         }
     }
 }
