@@ -121,7 +121,6 @@ namespace PantryGUI.ViewModels
                     CameraButtonText = "Tænd kamera";
                     Camera.CameraOff();
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => { Camera.CameraFeed = null; }));
-                   
                     break;
                 case CameraState.CameraOff:
                     _stateForCamera = CameraState.CameraOn;

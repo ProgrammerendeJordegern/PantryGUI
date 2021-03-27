@@ -82,8 +82,6 @@ namespace PantryGUI.Models
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         #region INotifyDataErrorInfo implementation
         public bool HasErrors
         {
