@@ -2,7 +2,7 @@
 
 namespace PantryGUI.Models
 {
-    class TimerClock : ITimer<Timer>
+    public class TimerClock : ITimer<Timer>
     {
         private Timer _timer;
         public TimerClock(int interval)

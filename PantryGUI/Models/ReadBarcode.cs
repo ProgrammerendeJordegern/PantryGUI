@@ -3,7 +3,7 @@ using ZXing;
 
 namespace PantryGUI.Models
 {
-    class ReadBarcode : IBarcodeReader
+    public class ReadBarcode : IBarcodeReader
     {
         private BarcodeReader _reader;
         private bool _activate;

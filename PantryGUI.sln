@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PantryGUI", "PantryGUI\PantryGUI.csproj", "{2531EB4B-CBC3-4C31-B9E1-11F2F78C465C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PantryPassion.Test.Unit", "PantryPassion.Test.Unit\PantryPassion.Test.Unit.csproj", "{69013AF9-DB4F-48BC-B085-0AA70939DCC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2531EB4B-CBC3-4C31-B9E1-11F2F78C465C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2531EB4B-CBC3-4C31-B9E1-11F2F78C465C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2531EB4B-CBC3-4C31-B9E1-11F2F78C465C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69013AF9-DB4F-48BC-B085-0AA70939DCC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69013AF9-DB4F-48BC-B085-0AA70939DCC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69013AF9-DB4F-48BC-B085-0AA70939DCC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69013AF9-DB4F-48BC-B085-0AA70939DCC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
