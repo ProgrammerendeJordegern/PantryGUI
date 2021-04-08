@@ -23,7 +23,24 @@ namespace PantryGUI.Models
 
         public event EventHandler<BarcodeFoundEventArgs> BarcodeFoundEvent;
 
-        public CameraConnection()
+        private static readonly object padlock = new object();
+        private static CameraConnection _instance = null;
+        public static CameraConnection Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new CameraConnection();
+                    }
+                    return _instance;
+                }
+            }
+        }
+
+        private CameraConnection()
         {
             _cameraListIndex = 0;
             _reader = new ReadBarcode();

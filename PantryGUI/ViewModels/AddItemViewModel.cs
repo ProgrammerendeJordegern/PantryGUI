@@ -37,7 +37,7 @@ namespace PantryGUI.ViewModels
 
         public AddItemViewModel()
         {
-            Camera = new CameraConnection();
+            Camera = CameraConnection.Instance;
             Camera.CameraOn();
             Camera.BarcodeFoundEvent += FoundBarcode;
             _cameraButtonText = "Sluk kamera";
